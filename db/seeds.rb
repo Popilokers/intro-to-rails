@@ -10,8 +10,14 @@
 
 require 'csv'
 require 'faker'
+# Generate 10 fake categories
+10.times do
+  Category.find_or_create_by!(category: Faker::Commerce.department(max: 1, fixed_amount: true))
+end
 
-#reads all csv files
+puts "Seeding complete! Total Categories: #{Category.count}"
+
+# #reads all csv files
 
 # product_csv = Rails.root.join('db/products.csv')
 
@@ -47,36 +53,36 @@ require 'faker'
 
 # creating fake orders
 
-customers = Customer.all
+# customers = Customer.all
 
-10.times do
-  customer = customers.sample
-  order = Order.create!(customer: customer)
-  puts "Created order ##{order.id} for customer #{customer.id} (#{customer.first_name} #{customer.last_name})"
-end
+# 10.times do
+#   customer = customers.sample
+#   order = Order.create!(customer: customer)
+#   puts "Created order ##{order.id} for customer #{customer.id} (#{customer.first_name} #{customer.last_name})"
+# end
 
-puts "Seeding complete! Total Orders: #{Order.count}"
+# puts "Seeding complete! Total Orders: #{Order.count}"
 
-#order items
+# #order items
 
-orders = Order.all
-products = Product.all
+# orders = Order.all
+# products = Product.all
 
-# Generate order_items for each order
-orders.each do |order|
-  # Decide how many products to add to this order (1 to 5 products)
-  rand(1..5).times do
-    product = products.sample        # pick a random product
-    quantity = rand(1..10)           # random quantity
-    price = quantity * product.price             # price from the product
+# # Generate order_items for each order
+# orders.each do |order|
+#   # Decide how many products to add to this order (1 to 5 products)
+#   rand(1..5).times do
+#     product = products.sample        # pick a random product
+#     quantity = rand(1..10)           # random quantity
+#     price = quantity * product.price             # price from the product
 
-    OrderItem.create!(
-      order: order,
-      product: product,
-      quantity: quantity,
-      price: price
-    )
+#     OrderItem.create!(
+#       order: order,
+#       product: product,
+#       quantity: quantity,
+#       price: price
+#     )
 
-    puts "Created order_item: Order ##{order.id}, Product ##{product.id}, Quantity #{quantity}, Price #{price}"
-  end
-end
+#     puts "Created order_item: Order ##{order.id}, Product ##{product.id}, Quantity #{quantity}, Price #{price}"
+#   end
+# end
