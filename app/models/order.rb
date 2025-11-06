@@ -4,5 +4,5 @@ class Order < ApplicationRecord
   has_many :order_items
   has_many :products, through: :order_items
 
-  validates :customer_id, presense: true
+  validates :customer_id, presence: true
 end
