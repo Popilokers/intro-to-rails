@@ -16,4 +16,10 @@ Rails.application.routes.draw do
 
   root "products#index"
   # get "/products", to: "products#index"
+  # get "/products/:id", to: "products#show", as: "product"
+  resources :products
+  resources :customers
+  resources :orders
+  # get "/customers", to: "customers#index", as: "customer"
+  # get "/customer/:id", to: "customer#show", as: "customer"
 end

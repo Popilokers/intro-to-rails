@@ -1,0 +1,12 @@
+<h1><%=@customer.full_name%></h1>
+<p>Customer ID: <%=@customer.id%></p>
+<p>Email Address: <%=@customer.email%></p>
+
+<h2>Orders:</h2>
+<ul>
+  <% @orders.each do |order| %>
+    <li>Order ID: <%= link_to order.id, order_path(order) %></li>
+  <% end %>
+</ul>
+
+<a href="/customers">Go back</a>
