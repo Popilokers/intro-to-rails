@@ -37,7 +37,13 @@
       <tr>
         <td><%=product.id%></td>
         <td><%= link_to product.name, product_path(product)%></td>
+
+        <%unless product.description.blank?%>
         <td><%= product.description %></td>
+        <%else%>
+        <td>No Description</td>
+        <%end%>
+
         <td><%= number_to_currency(product.price) %></td>
         <td><%= product.stock_quantity %></td>
         <td><%= product.category.category%></td>
