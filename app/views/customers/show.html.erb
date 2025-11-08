@@ -3,10 +3,18 @@
 <p>Email Address: <%=@customer.email%></p>
 
 <h2>Orders:</h2>
-<ul>
+<table>
+  <tr>
+    <th>Order ID</th>
+    <th>Date</th>
+  </tr>
   <% @orders.each do |order| %>
-    <li>Order ID: <%= link_to order.id, order_path(order) %></li>
+  <tr>
+    <td> <%= link_to order.id, order_path(order) %></td>
+    <td> <%=order.order_date%>
+  </tr>
   <% end %>
-</ul>
+
+</table>
 
 <a href="/customers">Go back</a>
