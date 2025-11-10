@@ -1,7 +1,30 @@
-<h1><%= @product.name %></h1>
-<p><%= @product.description %></p>
-<p>Price: <%= number_to_currency(@product.price) %></p>
-<p>Stock Quantity: <%= @product.stock_quantity %></p>
-<p>Cateogry: <%= @product.category.category %></p>
+<h1 class="title is-1"><%= @product.name %></h1>
 
-<%= link_to "Go back", :back %>
+  <div style="width: 300px; margin-left: 20px">
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <tr>
+        <th>Description</th>
+            <%unless @product.description.blank?%>
+            <td><%= @product.description %></td>
+            <%else%>
+            <td>No Description</td>
+            <%end%>
+      </tr>
+
+      <tr>
+        <th>Price</th>
+        <td><%= number_to_currency(@product.price) %></td>
+      </tr>
+      <tr>
+        <th>Quantity</th>
+        <td><%= @product.stock_quantity %></td>
+      </tr>
+      <tr>
+        <th>Category</th>
+        <td><%= @product.category.category %></td>
+      </tr>
+    </table>
+  </div>
+  <br>
+<%= link_to "Go back", :back, class: "button is-link", style:"margin-left:250px;" %>
+

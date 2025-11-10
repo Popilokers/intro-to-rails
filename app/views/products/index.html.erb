@@ -1,55 +1,41 @@
 <link rel="stylesheet" href="style.css">
 
-<%= form_with url: products_path, method: :get, local: true do %>
-  <%= label_tag :query, "Search Products:" %>
-  <%= text_field_tag :query, params[:query] %>
+<h1 class="title is-1">Products</h1>
 
-  <%= label_tag :category_id, "Filter by Category" %>
-  <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :category, params[:category_id]), include_blank: "All Categories" %>
-  <%= submit_tag "Filter" %>
-<% end %>
 
-<h1>Products</h1>
+  <div class="table">
+    <table id="products" class="table is-striped is-hoverable is-fullwidth">
+      <thead>
+        <tr style="columns mb-5">
+          <th>Product ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th class="has-text-centered">Price</th>
+          <th class="has-text-centered">Stock Quantity</th>
+          <th >Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%=product.id%></td>
+            <td><%= link_to product.name, product_path(product)%></td>
 
-<%# <style>
-  table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse; /* This makes sure borders are not doubled */
-  }
-  th, td {
-    padding: 8px;
-  }
-</style> %>
+            <%unless product.description.blank?%>
+            <td><%= product.description %></td>
+            <%else%>
+            <td>No Description</td>
+            <%end%>
 
-<table id="products">
-  <thead>
-    <tr>
-      <th>Product ID</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Stock Quantity</th>
-      <th>Category</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%=product.id%></td>
-        <td><%= link_to product.name, product_path(product)%></td>
+            <td class="has-text-centered"><%= number_to_currency(product.price) %></td>
+            <td class="has-text-centered"><%= product.stock_quantity %></td>
+            <td><%= product.category.category%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-        <%unless product.description.blank?%>
-        <td><%= product.description %></td>
-        <%else%>
-        <td>No Description</td>
-        <%end%>
-
-        <td><%= number_to_currency(product.price) %></td>
-        <td><%= product.stock_quantity %></td>
-        <td><%= product.category.category%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= paginate @products %>
+    <div class="pagination is-centered" role="navigation" aria-label="pagination">
+      <%= paginate @products%>
+    </div>
+  </div>

@@ -1,22 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <%= link_to "Home", root_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "About", about_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Customers", customers_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Products", root_path, class: "nav-link" %>
-        </li>
-      </ul>
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <%= link_to "Joezer", root_path, class: "navbar-item" , style: "color: white; font-weight: bold; font-size: 30px"%>
+      <%= link_to "About", about_path, class: "navbar-item" %>
+      <%= link_to "Customers", customers_path, class: "navbar-item" %>
+      <%= link_to "Products", products_path, class: "navbar-item" %>
     </div>
+
+    <!-- Hamburger menu for mobile -->
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarMenu" class="navbar-end">
+
+    <%= form_with url: products_path, class: "control", method: :get, local: true do %>
+      <%= text_field_tag :query, params[:query], class:"input", placeholder: "Search Product Names", style:"width: 300px; height: 37px" %>
+
+      <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :category, params[:category_id]), include_blank: "All Categories", class:"dropdown-content" %>
+      <%= submit_tag "Filter" , class: "button is-primary" %>
+    <% end %>
   </div>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const burgers = Array.from(document.querySelectorAll('.navbar-burger'));
+    burgers.forEach(burger => {
+      burger.addEventListener('click', () => {
+        const target = document.getElementById(burger.dataset.target);
+        burger.classList.toggle('is-active');
+        target.classList.toggle('is-active');
+      });
+    });
+  });
+</script>

@@ -1,12 +1,13 @@
 <link rel="stylesheet" href="style.css">
 
+
+<h1 class="title is-1">Customers</h1>
+
 <%= form_with url: customers_path, method: :get, local: true do %>
-  <%= label_tag :query, "Search Customers:" %>
-  <%= text_field_tag :query, params[:query] %>
-  <%= submit_tag "Search" %>
+  <%= text_field_tag :query, params[:query], placeholder: "Search Customer Name" , class:"input", style:"border: 2px solid grey; width: 300px; margin-left: 113px"%>
+  <%= submit_tag "Search", class: "button is-link"%>
 <% end %>
 
-<h1>Customers</h1>
 
 <%# <style>
   table, th, td {
@@ -17,23 +18,25 @@
     padding: 8px;
   }
 </style> %>
-
-<table id="products">
-  <thead>
-    <tr>
-      <th>Customer ID</th>
-      <th>Name</th>
-      <th>Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @customers.each do |customer| %>
+<div class="table">
+  <table class="table is-striped is-hoverable is-fullwidth">
+    <thead>
       <tr>
-        <td><%= customer.id%></td>
-        <td><%= link_to customer.full_name, customer_path(customer)%></td>
-        <td><%= customer.email %></td>
+        <th>Customer ID</th>
+        <th>Name</th>
+        <th>Email</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.id%></td>
+          <td><%= link_to customer.full_name, customer_path(customer)%></td>
+          <td><%= customer.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
+
+</div>

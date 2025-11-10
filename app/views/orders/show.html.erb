@@ -1,31 +1,34 @@
-<h1>Order ID:<%=@order.id%></h1>
+<h1 class="title is-1">Order ID: <%=@order.id%></h1>
 
-<h2>Products:</h2>
+<p class="title is-3">Order date: <%=@order.order_date%></p>
 
-<p>Order date: <%=@order.order_date%></p>
-<table id="products">
-  <thead>
-    <tr>
-      <th>Product ID</th>
-      <th>Title</th>
-      <th>Unit Price</th>
-      <th>Quantity</th>
-      <th>Cost</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
+
+
+<div class="table">
+  <table class="table is-striped is-hoverable is-fullwidth">
+    <thead>
       <tr>
-        <td><%=item.product.id%></td>
-        <td><%= link_to item.product.name, product_path(item.product.id)%></td>
-        <td><%= number_to_currency(item.product.price) %></td>
-        <td><%= item.quantity %></td>
-        <td><%= number_to_currency(item.price) %></td>
-
+        <th>Product ID</th>
+        <th>Title</th>
+        <th class="has-text-centered">Unit Price</th>
+        <th class="has-text-centered">Quantity</th>
+        <th>Cost</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%=item.product.id%></td>
+          <td><%= link_to item.product.name, product_path(item.product.id)%></td>
+          <td class="has-text-centered"><%= number_to_currency(item.product.price) %></td>
+          <td class="has-text-centered"><%= item.quantity %></td>
+          <td><%= number_to_currency(item.price) %></td>
 
-<h2>Total: <%= number_to_currency(@total) %></h2>
-<a href="/customers/<%=@order.customer.id%>">Go back</a>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<h2 class="has-text-right" style="margin-right:250px; font-weight: bold; font-size: 25px">Total: <%= number_to_currency(@total) %></h2>
+<br>
+<a class= "button is-link is-pulled-right" style="margin-right:250px;" href="/customers/<%=@order.customer.id%>" >Go back</a>

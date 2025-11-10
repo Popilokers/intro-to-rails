@@ -97,12 +97,11 @@
 #   end
 # end
 
-require 'faker'
 
-orders = Order.all
+# orders = Order.all
 
-orders.each do |order|
-  order.update!(
-    order_date: Faker::Date.between(from: 2.years.ago, to: Date.today)
-  )
-end
+# orders.each do |order|
+#   order.update!(
+#     order_date: Faker::Date.between(from: 2.years.ago, to: Date.today)
+#   )
+# end

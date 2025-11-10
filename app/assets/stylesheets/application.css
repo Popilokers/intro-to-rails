@@ -9,4 +9,49 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
+ .pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 0.5rem;
+}
 
+.pagination a, .pagination span {
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #363636;
+}
+
+.pagination .current {
+  background-color: #3273dc;
+  color: white;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.pagination a, .pagination span {
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #363636;
+}
+
+.pagination .current {
+  background-color: #3273dc;
+  color: white;
+}
+
+.table{
+  font-size: 16px;
+  margin: auto;
+  width: 85%;
+}
+
+.table table th{
+  width: 10px;
+}

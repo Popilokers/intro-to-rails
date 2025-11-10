@@ -1,20 +1,40 @@
-<h1><%=@customer.full_name%></h1>
-<p>Customer ID: <%=@customer.id%></p>
-<p>Email Address: <%=@customer.email%></p>
+<div class="is-flex  is-align-items-center is-flex-direction-column">
+  <div style="margin-top:20px">
+  <h1 class="title is-1"><%=@customer.full_name%></h1>
 
-<h2>Orders:</h2>
-<table>
-  <tr>
-    <th>Order ID</th>
-    <th>Date</th>
-  </tr>
-  <% @orders.each do |order| %>
-  <tr>
-    <td> <%= link_to order.id, order_path(order) %></td>
-    <td> <%=order.order_date%>
-  </tr>
-  <% end %>
+  <div style=" margin-left: 20px">
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <tr>
+        <th>Customer ID</th>
+        <td><%=@customer.id%></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%=@customer.email%></td>
+      </tr>
+    </table>
+  </div>
 
-</table>
+  <h2 class="title is-2">Orders:</h2>
+  <div style=" margin-left: 20px">
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <tr>
+        <th>Order ID</th>
+        <th>Date</th>
+      </tr>
+      <% @orders.each do |order| %>
+      <tr>
+        <td> <%= link_to order.id, order_path(order) %></td>
+        <td> <%=order.order_date%>
+      </tr>
+      <% end %>
 
-<a href="/customers">Go back</a>
+    </table>
+  </div>
+      <div class="pagination is-centered" role="navigation" aria-label="pagination">
+      <%= paginate @orders%>
+    </div>
+  <br>
+  <a class= "button is-link" style="margin-left:250px;" href="/customers" >Go back</a>
+  </div>
+</div>

@@ -12,6 +12,7 @@ end
   def show
     @customer = Customer.find(params[:id])
     @orders = @customer.orders
+    @orders = @orders.page(params[:page]).per(5)
   end
 
 
