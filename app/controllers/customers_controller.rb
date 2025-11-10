@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 def index
-  if params[:query].present?
-    @customers = Customer.where("first_name||' '||last_name LIKE ?", "%#{params[:query]}%").order(:last_name)
+  if params[:customer_query].present?
+    @customers = Customer.where("first_name||' '||last_name LIKE ?", "%#{params[:customer_query]}%").order(:last_name)
   else
     @customers = Customer.all.order(:last_name)
   end
