@@ -1,6 +1,6 @@
 <h1 class="title is-1"><%= @product.name %></h1>
 
-  <div style="width: 300px; margin-left: 20px">
+  <div style="width: 320px; margin-left: 20px">
     <table class="table is-striped is-hoverable is-fullwidth">
       <tr>
         <th>Description</th>
@@ -16,7 +16,7 @@
         <td><%= number_to_currency(@product.price) %></td>
       </tr>
       <tr>
-        <th>Quantity</th>
+        <th>Stock Quantity</th>
         <td><%= @product.stock_quantity %></td>
       </tr>
       <tr>
