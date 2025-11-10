@@ -6,7 +6,10 @@
 <%= form_with url: customers_path, method: :get, local: true do %>
   <%= text_field_tag :customer_query, params[:customer_query], placeholder: "Search Customer Name" , class:"input", style:"border: 2px solid grey; width: 300px; margin-left: 113px"%>
   <%= submit_tag "Search", class: "button is-link"%>
+  <a class= "button is-primary" style=" " href="/customers/" >Clear Filter</a>
+
 <% end %>
+
 
 
 <%# <style>

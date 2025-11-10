@@ -21,7 +21,10 @@
       <%= text_field_tag :query, params[:query], class:"input", placeholder: "Search Product Names", style:"width: 300px; height: 37px" %>
 
       <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :category, params[:category_id]), include_blank: "All Categories", class:"dropdown-content" %>
-      <%= submit_tag "Filter" , class: "button is-primary" , style:"height: 37px"%>
+      <%= submit_tag "Filter" , class: "button is-primary" , style:"height: 37px; margin-right:5px;"%>
+
+    <a class= "button is-primary is-pulled-right" style="height: 37px; " href="/products/" >Clear Filter</a>
+
     <% end %>
   </div>
 </nav>
